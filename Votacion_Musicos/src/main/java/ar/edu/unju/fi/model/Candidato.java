@@ -21,6 +21,7 @@ public class Candidato {
 	private String descripcion;
 	
 	private int votos;
+	
 	public Candidato() {
 		// TODO Auto-generated constructor stub
 	}
