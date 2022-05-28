@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+	<nav th:replace="loyouts/header :: generalheader"></nav>
+	<br>
+	<br>
+	<div class="container col-4">
+		<br>
+		<h4 class="text-white " style="text-align:center">Registrar Votante</h4>
+		<form th:action="@{/usuario/guardar}" method="POST" th:object="${usuario}">
+			<div class="mb-3 text-white">
+					<label for="nombreId" class="form-label">Nombre</label> 
+					<input  th:field="*{nombre}" type="text" class="form-control" id="nombreId" placeholder="Ingrese su nombre">
+					<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+				</div>
+				<div class="mb-3 text-white">
+					<label for="emailId" class="form-label">E-mail</label> 
+					<input th:field="*{email}" type="email" class="form-control" id="emailId" placeholder="Ingrese e-mail">
+					<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				<div class="mb-3 text-white">
+					<label for="fechaId" class="form-label">Fecha</label> 
+					<input th:field="*{fnac}" type="date" class="form-control" id="fechaId" placeholder="Ingrese su fecha de nacimiento">
+					<div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-primary me-md-2" type="submit">Enviar</button>
+					 <a th:href="@{/inicio}" id="cancel" class="btn btn-secondary">Cancelar</a>
+	  				
+				</div>
+		
+		</form>
+	</div>
+
+
+	<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
