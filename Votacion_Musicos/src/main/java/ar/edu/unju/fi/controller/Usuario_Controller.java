@@ -48,7 +48,7 @@ public class Usuario_Controller {
 	
 	@GetMapping("/listaUsuarios")
 	public String getListaCargada(Model model){
-		model.addAttribute("unUsuario",usuarioService.getListaUsuario().getUsuario());
+		model.addAttribute("usuarios",usuarioService.getListaUsuario().getUsuario());
 		return "lista_usuario";
 	}
 	

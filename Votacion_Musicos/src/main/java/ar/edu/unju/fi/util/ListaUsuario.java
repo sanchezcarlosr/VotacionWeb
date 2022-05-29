@@ -13,7 +13,7 @@ public class ListaUsuario {
 	private ArrayList<Usuario> usuarios;
 	public ListaUsuario() {
 		usuarios =new ArrayList<Usuario>();
-		Usuario usuario1=new Usuario("Carlos","carlo@gmail.com",LocalDate.parse("2022-09-05"), 0);
+		Usuario usuario1=new Usuario("Carlos","carlo@gmail.com",LocalDate.parse("2000-09-05"),0);
 		usuarios.add(usuario1);
 	}
 	

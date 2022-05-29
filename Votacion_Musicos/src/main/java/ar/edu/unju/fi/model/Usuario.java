@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -29,6 +30,10 @@ public class Usuario {
 		this.fnac = fnac;
 		this.cont_voto = cont_voto;
 	}
+	public int getAge(){
+		Period period = Period.between(this.fnac,LocalDate.now());
+		return period.getYears();
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -53,7 +58,5 @@ public class Usuario {
 	public void setCont_voto(int cont_voto) {
 		this.cont_voto = cont_voto;
 	}
-	
-	
-	
+
 }
