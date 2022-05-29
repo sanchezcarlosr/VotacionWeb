@@ -29,7 +29,6 @@
     							<p th:text="${candidato.descripcion}" class="card-text"></p>
     							<br />
     							<div>
-    								<a th:href="@{/usuario/votar}+${candidato.codigo}" class="btn btn-primary">Empezar</a>
     								<a th:href="@{/Candidatos/editar/}+${candidato.codigo}" id="editarCandidato" class="btn btn-warning">Editar</a>
 									<a th:href="@{/Candidatos/eliminar/}+${candidato.codigo}" id="eliminarCandidato" class="btn btn-danger">Eliminar</a>
     							</div>

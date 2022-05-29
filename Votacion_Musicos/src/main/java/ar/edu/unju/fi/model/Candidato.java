@@ -6,8 +6,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class Candidato {
-	@Min(value = 1, message = "*El valor del código debe ser mayor o igual a 1")
+	@Min(value = 0, message = "*El valor del código debe ser mayor o igual a 0")
 	@Max(value = 9999, message = "*El valor del codigo debe ser menor o igual a 9999")
+	
 	private int codigo;
 	
 	@Size(min=3, max=100, message = "*El nombre debe tener entre 3 a 100 caracteres")

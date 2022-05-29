@@ -27,7 +27,9 @@
 			<td th:text="${usuario.email}"></td>
 			<td th:text="${usuario.fnac}"></td>
 			<td th:text="${usuario.getAge()}"></td>
-
+			<td>
+				<a th:href="@{/usuario/votar/}+${usuario.email}" class="btn btn-primary">Seleccionar</a>
+			</td>
 		</tr>
 		</tbody>
 	</table>
