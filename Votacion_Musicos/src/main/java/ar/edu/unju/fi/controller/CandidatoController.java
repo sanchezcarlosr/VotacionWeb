@@ -62,20 +62,22 @@ public class CandidatoController {
 	}
 	@GetMapping("/editar/{codigo}")
 	public ModelAndView getEditarCandidatoPage(@PathVariable(value="codigo") int codigo) {
-		ModelAndView mav = new ModelAndView("edicion_candidato");
+		ModelAndView mav = new ModelAndView("edicion_candidato.html");
 		Candidato candidato= candidatoService.buscarCandidato(codigo);
 		mav.addObject("candidato", candidato);
 		return mav;
 	}
 	@PostMapping("/modificar")
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidato, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			
+		if(bindingResult.hasErrors()){
+			LOGGER.info("ocurrio un error"+ candidato);
+			ModelAndView modelAndView = new ModelAndView("edicion_candidato.html");
+			modelAndView.addObject("candidato", candidato);
+			return modelAndView;
 		}
-		//
-		ModelAndView mav= new ModelAndView("redirect:/Candidatos/listaCandidatos");
+		ModelAndView modelAndView = new ModelAndView("redirect:/Candidatos/listaCandidatos");
 		candidatoService.modificarCandidato(candidato);
-		return mav;
+		return modelAndView;
 	}
 	@GetMapping("/eliminar/{codigo}")
 	public ModelAndView getElimnarCandidato(@PathVariable(value="codigo") int codigo) {
