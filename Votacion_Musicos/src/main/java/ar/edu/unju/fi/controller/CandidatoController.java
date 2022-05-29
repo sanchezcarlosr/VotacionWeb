@@ -86,4 +86,18 @@ public class CandidatoController {
 		candidatoService.eliminarCandidato(codigo);
 		return mav;
 	}
+	
+	@GetMapping("/listaEleccion")
+	public String getListaEleccion(Model model){
+		model.addAttribute("unCandidato",candidatoService.getListaCandidato().getCandidato());
+		return "lista_eleccion"; 
+	}
+	
+	@GetMapping("/votar/{codigo}")
+	public ModelAndView getVotarCandidato(@PathVariable(value="codigo")int codigo) {
+		ModelAndView mav = new ModelAndView("agradecimiento_page");
+		candidatoService.guardarVoto(codigo);
+		mav.addObject("unCandidato", candidatoService.getListaCandidato().getCandidato());
+		return mav;
+	}
 }

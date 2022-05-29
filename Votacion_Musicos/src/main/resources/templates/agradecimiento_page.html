@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<<html xmlns:th="http://www.thymeleaf.org">>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ 	<p>Gracias</p>
+ 	
+ 	<div th:each="candidato : ${unCandidato}" class="col-3 m-4">
+						<div class="card" style="width: 18rem;">
+  							<img th:src="@{/images/musica2.jpg}" class="card-img-top" alt="...">
+  							<div class="card-body">
+    							<h5 th:text="${candidato.nombre}" class="card-title"></h5>
+    							<p th:text="${candidato.genero}" class="card-text"></p>
+    							<p th:text="${candidato.descripcion}" class="card-text"></p>
+    							<p th:text="${candidato.votos}" class="card-text"></p>
+    							<br />
+  							</div>
+						</div>
+					</div>
+</body>
+</html>

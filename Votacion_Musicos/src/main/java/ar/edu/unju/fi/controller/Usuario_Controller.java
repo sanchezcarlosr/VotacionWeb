@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unju.fi.model.Usuario;
 import ar.edu.unju.fi.service.IUsuarioService;
-import ar.edu.unju.fi.util.ListaUsuario;
 
 @Controller
 @RequestMapping("/usuario") //@{/usuario/listaUsuario}
@@ -40,7 +38,7 @@ public class Usuario_Controller {
 			mav.addObject("usuario", usuario);
 			return mav;
 		}
-		ModelAndView mav=new ModelAndView("redirect:/Candidatos/listaCandidatos");
+		ModelAndView mav=new ModelAndView("redirect:/usuario/listaUsuarios");
 		usuario.setCont_voto(0);
 		if(usuarioService.guardarUsuario(usuario)) {
 			LOGGER.info("Se registro usuario "+usuario.getNombre());
@@ -53,11 +51,18 @@ public class Usuario_Controller {
 		model.addAttribute("usuarios",usuarioService.getListaUsuario().getUsuario());
 		return "lista_usuario";
 	}
-	@PostMapping("/votar/{codigo}")
-	public ModelAndView getResitroVotoPage(@PathVariable(value="codigo") int codigo) {
-		ModelAndView mav = new ModelAndView("cargar_voto");
-		mav.addObject("unCodigo", codigo);
-		return mav;
+	
+	@GetMapping("/votar/{email}")
+	public ModelAndView getResitroVotoPage(@PathVariable(value="email") String email) {
+		if(usuarioService.guardarVoto(email)) {
+			LOGGER.info("Se realizó el voto de "+usuarioService.buscarUsuario(email).getNombre());
+			ModelAndView mav = new ModelAndView("redirect:/Candidatos/listaEleccion");
+			return mav;
+		}else {
+			LOGGER.info("No se realizó el voto de "+usuarioService.buscarUsuario(email).getNombre());
+			ModelAndView mav = new ModelAndView("error_page");
+			return mav;
+		}
 	}
 	
 

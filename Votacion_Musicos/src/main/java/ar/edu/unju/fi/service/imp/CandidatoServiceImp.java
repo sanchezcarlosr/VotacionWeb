@@ -29,6 +29,7 @@ public class CandidatoServiceImp implements ICandidatoService {
 			}
 		}
 		if(respuesta==true) {
+			candidato.setVotos(0);
 			listaCandidato.getCandidato().add(candidato);
 		}
 		return respuesta;
@@ -66,6 +67,16 @@ public class CandidatoServiceImp implements ICandidatoService {
 			}
 		}
 		listaCandidato.getCandidato().remove(indice);
+	}
+
+	@Override
+	public void guardarVoto(int codigo) {
+		for(Candidato can: listaCandidato.getCandidato()) {
+			if(can.getCodigo()==codigo)
+			{
+				can.setVotos(can.getVotos()+1);
+			}
+		}
 	}
 
 }
