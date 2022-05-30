@@ -21,7 +21,14 @@ public class ListaCandidato {
 		candidatos.add(candidato3);
 		candidatos.add(candidato4);
 	}
+	public int totalVotos(){
+		int total =0;
+		for(Candidato c:this.getCandidato()){
+			total += c.getVotos();
 
+		}
+		return total;
+	}
 	public ArrayList<Candidato> getCandidato() {
 		return candidatos;
 	}
