@@ -71,7 +71,7 @@ public class CandidatoController {
 	public ModelAndView editarDatosCandidato(@Validated @ModelAttribute("candidato") Candidato candidato, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()){
 			LOGGER.info("ocurrio un error"+ candidato);
-			ModelAndView modelAndView = new ModelAndView("edicion_candidato.html");
+			ModelAndView modelAndView = new ModelAndView("edicion_candidato");
 			modelAndView.addObject("candidato", candidato);
 			return modelAndView;
 		}
@@ -98,6 +98,7 @@ public class CandidatoController {
 		ModelAndView mav = new ModelAndView("agradecimiento_page");
 		candidatoService.guardarVoto(codigo);
 		mav.addObject("unCandidato", candidatoService.getListaCandidato().getCandidato());
+		mav.addObject("total",candidatoService.getListaCandidato().totalVotos());
 		return mav;
 	}
 }

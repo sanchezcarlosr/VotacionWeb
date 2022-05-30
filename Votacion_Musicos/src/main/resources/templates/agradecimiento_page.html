@@ -1,23 +1,56 @@
 <!DOCTYPE html>
-<<html xmlns:th="http://www.thymeleaf.org">>
+<html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
+
 <body>
- 	<p>Gracias</p>
- 	
- 	<div th:each="candidato : ${unCandidato}" class="col-3 m-4">
-						<div class="card" style="width: 18rem;">
-  							<img th:src="@{/images/musica2.jpg}" class="card-img-top" alt="...">
-  							<div class="card-body">
-    							<h5 th:text="${candidato.nombre}" class="card-title"></h5>
-    							<p th:text="${candidato.genero}" class="card-text"></p>
-    							<p th:text="${candidato.descripcion}" class="card-text"></p>
-    							<p th:text="${candidato.votos}" class="card-text"></p>
-    							<br />
-  							</div>
-						</div>
-					</div>
+<nav th:insert="loyouts/header :: generalheader"></nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div></div>
+		<div>
+			<h1 class="text-center mt-5">GRACIAS POR REALIZAR LA VOTACIÓN</h1>
+			<div class="text-center mt-5">
+				<button class="btn btn-dark btn-lg"><a th:href="@{/Candidatos/listaEleccion/}">Volver</a></button>
+			</div>
+			<div class="mt-5">
+				<h1 class="text-center">Estado de la Votación</h1>
+				<table class="table table-dark table-striped ">
+					<thead>
+					<tr>
+						<th>Codigo</th>
+						<th>Nombre</th>
+						<th>Cantidad de votos</th>
+						<th>Porcentaje %</th>
+						<th>Total de votos</th>
+
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="candidato:${unCandidato}">
+						<td th:text="${candidato.codigo}"></td>
+						<td th:text="${candidato.nombre}"></td>
+						<td th:text="${candidato.votos}"></td>
+						<div></div>
+						<td th:with="result=${candidato.votos * 100/total}"><span th:text="${result}">%</span></td>
+						<td th:text="${candidato.votos}"></td>
+
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div></div>
+	</div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+
 </body>
 </html>
